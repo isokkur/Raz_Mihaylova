@@ -1,0 +1,33 @@
+﻿<Window x:Class="WpfApp4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp4"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Background="#FFCDC4E6">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Входящий файл:" Background="#FFE9F0FF" Margin="0,34,0,-60" Grid.Row="5"/>
+        <TextBox x:Name="InputFileTextBox" Grid.Row="5" Margin="10,65,0,-83"/>
+
+        <Label Content="Исходящи файл:" Grid.Row="5" Margin="0,83,0,-109" Background="#FFA6E6DC"/>
+        <TextBox x:Name="OutputFileTextBox" Grid.Row="5" Margin="10,109,0,-127"/>
+
+        <Label Content="Минимальная длина слова:" Grid.Row="5" Margin="5,132,-5,-158" Background="#FFDCF3D9" RenderTransformOrigin="0.473,0.346"/>
+        <TextBox x:Name="MinWordLengthTextBox" Grid.Row="5" Margin="10,163,0,-181"/>
+
+        <CheckBox x:Name="RemovePunctuationCheckBox" Content="Убрать пунктуацияю" Grid.Row="5" Margin="570,245,46,-260"/>
+
+        <Button Content="ОБРАБОТАТЬ" Click="ProcessFileButton_Click" Grid.Row="5" Margin="570,282,0,-337" HorizontalAlignment="Left" Width="160" Background="#FF8FF980"/>
+
+    </Grid>
+</Window>
