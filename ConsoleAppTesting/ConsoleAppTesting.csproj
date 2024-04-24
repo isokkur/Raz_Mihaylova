@@ -1,10 +1,52 @@
-<Project Sdk="Microsoft.NET.Sdk">
+using Microsoft.VisualStudio.TestPlatform.TestHost;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.IO;
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+namespace MatrixMultiplication.Tests
+{
+    using Microsoft.VisualStudio.TestTools.UnitTesting; 
+    using System.IO; 
 
-</Project>
+    [TestClass] 
+    public class MatrixMultiplicationTests 
+    {
+        [TestMethod]
+        public void TestMatrixMultiplication() 
+        {
+            using (StringWriter sw = new StringWriter()) // Использование StringWriter для перехвата вывода в консоль
+            {
+                Console.SetOut(sw); // Настройка консоли для вывода в StringWriter
+
+                StringReader sr = new StringReader("3\n4\n"); // Создание StringReader для имитации ввода
+                Console.SetIn(sr); // Настройка консоли для ввода из StringReader
+
+                Program.Main(null); // Вызов метода Main из класса Program
+
+                string expectedOutput = "Матрица умножения:\r\n1 2 3 \r\n2 4 6 \r\n3 6 9 \r\n4 8 12 \r\n"; // Ожидаемый вывод
+
+                Assert.AreEqual(expectedOutput, sw.ToString()); // Проверка соответствия ожидаемого вывода с фактическим выводом
+            }
+        }
+
+        [TestMethod] 
+        public void TestInvalidInput()
+        {
+            using (StringWriter sw = new StringWriter()) // Использование StringWriter для перехвата вывода в консоль
+            {
+                Console.SetOut(sw); // Настройка консоли для вывода в StringWriter
+
+                StringReader sr = new StringReader("abc\n4\n3\n"); // Создание StringReader для имитации ввода
+                Console.SetIn(sr); // Настройка консоли для ввода из StringReader
+
+                Program.Main(null); // Вызов метода Main из класса Program
+
+                string expectedOutput = "Ошибка: Некорректный ввод числа x. Попробуйте снова.\r\n" +
+                                       "Матрица умножения:\r\n1 2 3 \r\n2 4 6 \r\n3 6 9 \r\n4 8 12 \r\n"; // Ожидаемый вывод при некорректном вводе
+
+                Assert.AreEqual(expectedOutput, sw.ToString()); // Проверка соответствия ожидаемого вывода с фактическим выводом
+            }
+        }
+    }
+}
+
