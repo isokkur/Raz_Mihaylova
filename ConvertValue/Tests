@@ -1,0 +1,35 @@
+namespace ViewModelTestss
+{
+    [TestFixture]
+    public class Tests
+    {
+        [Test]
+        public void CoinYepParser_GetValuteEntries_Should_Return_Correct_List()
+        {
+            var table = new DataTable();
+            table.Columns.Add("Vname");
+            table.Columns.Add("Vchcode");
+            table.Columns.Add("Vcurs");
+            table.Rows.Add("Рубль", "RUB", 1);
+            table.Rows.Add("Доллар США", "USD", 75.8417);
+
+            var valuteEntries = CoinYepParser.GetValuteEntries(table);
+
+            Assert.AreEqual(2, valuteEntries.Count());
+            Assert.AreEqual("Рубль", valuteEntries.First().Name);
+            Assert.AreEqual("RUB", valuteEntries.First().Code);
+            Assert.AreEqual(1, valuteEntries.First().Rate);
+            Assert.AreEqual("Доллар США", valuteEntries.Last().Name);
+            Assert.AreEqual("USD", valuteEntries.Last().Code);
+            Assert.AreEqual(75.8417, valuteEntries.Last().Rate);
+        }
+
+        [Test]
+        public void InputHandler_Unify_Should_Return_Correct_Unified_String()
+        {
+            string input = "1000.50";
+            var result = InputHandler.Unify(input);
+            Assert.AreEqual("123.45", result);
+        }
+    }
+}
