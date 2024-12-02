@@ -1,4 +1,4 @@
-// Автор: [Иванов Матвей Николаевич]
+
 
 using System;
 using System.Threading;
